@@ -1,4 +1,4 @@
-package com.preing.domain.user;
+package com.preing.domain.consumer;
 
 public class Address {
 

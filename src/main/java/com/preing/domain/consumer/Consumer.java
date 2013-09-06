@@ -1,6 +1,6 @@
-package com.preing.domain.user;
+package com.preing.domain.consumer;
 
-public class User {
+public class Consumer {
 
 	private String code;
 	private String name;
@@ -9,7 +9,7 @@ public class User {
 	private String email;
 	private Gender gender;
 
-	public User(String code, String name, String pwd, String mobile, String email, Gender gender) {
+	public Consumer(String code, String name, String pwd, String mobile, String email, Gender gender) {
 		this.code = code;
 		this.name = name;
 		this.pwd = pwd;
