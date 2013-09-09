@@ -4,7 +4,11 @@ import java.util.List;
 
 
 public class Verbalize {
-
+ /**
+  * @author caimingqin
+  * @since 2013-09-09
+  * @category 产品评论
+  */
 	private String code;
 	private String content;
 	private List<Score> scores;

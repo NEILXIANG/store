@@ -1,17 +1,19 @@
 package com.preing.domain.product;
 
+import java.io.Serializable;
 import java.util.List;
 
-import com.preing.domain.distributor.Distributor;
-
-public class Product {
+public class Product implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7423072899870957403L;
 	private String code;
 	private String name;
 	private String title;
 	private List<Price> price;
 	private Template tpl;
-    private Distributor distributor;
-    private List<SalesProperty> props;
+    private int qty;
     private List<Verbalize> verbalizes;
     private ProductCategory category;
 	public String getCode() {
@@ -34,13 +36,6 @@ public class Product {
 		return tpl;
 	}
 
-	public Distributor getDistributor() {
-		return distributor;
-	}
-
-	public List<SalesProperty> getProps() {
-		return props;
-	}
 
 	public List<Verbalize> getVerbalizes() {
 		return verbalizes;
@@ -48,6 +43,10 @@ public class Product {
 
 	public ProductCategory getCategory() {
 		return category;
+	}
+
+	public int getQty() {
+		return qty;
 	}
 
 }
