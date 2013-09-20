@@ -2,8 +2,6 @@ package job;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +55,6 @@ public class HtmlParserJob extends HttpJob {
 		File file = new File("F:/html/");
 		File[] listFiles = file.listFiles();
 		File fileStore = new File("F:/images/");
-		List<String> allUrls = new ArrayList<String>();
 		for (File f : listFiles) {
 			getElementUrls(f, new String[] { "img" });
 		}
@@ -67,13 +64,11 @@ public class HtmlParserJob extends HttpJob {
 
 	@Test
 	public void test2() throws IOException {
-//		Document doc = Jsoup.connect("http://dms.orion.com.cn/dms/index.htm").get();// "http://dms.orion.com.cn/dms/"+
 		Document doc = Jsoup.connect("http://119.254.82.208/dms/chat.html").get();
 //		System.out.println(doc.toString());
 		Elements elements = doc.getElementsByTag("img");
 		for (Element ele : elements) {
 			String httpUrl ="http://119.254.82.208/dms/"+ele.attr("src");
-		
 			if (httpUrl.contains("http")
 					&& (httpUrl.contains(".png") ||httpUrl.contains(".jpg") || httpUrl.contains(".JPG") || httpUrl.contains(".gif") || httpUrl.contains(".GIF"))) {
 				if(httpUrl.contains("'")){
