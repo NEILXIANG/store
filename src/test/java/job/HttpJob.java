@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.Set;
+import java.util.UUID;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,15 +33,12 @@ public abstract class HttpJob extends TestRepos {
 	protected void downloadHttpResources(List<String> httpUrls, File fileStore) {
 		try {
 			for (String url : httpUrls) {
+				System.out.println("============>>>>:"+url);
 				if (url.startsWith("http://")) {
 					Image image = Image.getImage(url);
-					System.out.println(image.name+","+image.processCount+","+image.buffer.length);
-					while(image.buffer.length==0){
-						Thread.sleep(1000);
-						image.reGet();
-						System.out.println("reget:"+image.name+","+image.processCount+","+image.buffer.length);
-					}
+					System.out.println("download:"+image.name+","+image.processCount+","+image.buffer.length);
 					doDownload(image, fileStore);
+					Thread.sleep(1000);
 				} else {
 					logger.warn(url + " is not start with http");
 				}
@@ -102,11 +101,13 @@ public abstract class HttpJob extends TestRepos {
 		File file = new File(fileStore, image.name);
 		if (!file.exists()) {
 			file.createNewFile();
-			FileOutputStream fileOutputStream = new FileOutputStream(file);
-			fileOutputStream.write(image.buffer);
-			fileOutputStream.close();
+		}else{
+			file = new File(fileStore,UUID.randomUUID().toString()+image.name);
 		}
 
+		FileOutputStream fileOutputStream = new FileOutputStream(file);
+		fileOutputStream.write(image.buffer);
+		fileOutputStream.close();
 	}
 
 	private static class Image {
